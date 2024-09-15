@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag Racer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="tutorial">
+        <p></p>
+    </div>
+
+    <div class="textHighlight"></div>
+
+    <!-- races -->
+    <div class="races">
+        <div class="race" onclick="Main.newRace(Races.race1)">
+            <div class="solid-part">
+                <p>Race #1</p>
+                <p style="font-size: small;">Difficulty: ★</p>
+                <p style="font-size: small; margin-top: 1%;">Reward: $100</p>
+            </div>
+            <div class="checkered-part"></div>
+        </div>
+
+        <div class="race locked" onclick="Main.newRace(Races.race2)">
+            <div class="solid-part">
+                <p>Race #2</p>
+                <p style="font-size: small;">Difficulty: ★★</p>
+                <p style="font-size: small; margin-top: 1%;">Reward: $750</p>
+            </div>
+            <div class="checkered-part"></div>
+        </div>
+
+        <div class="race locked" onclick="Main.newRace(Races.race3)">
+            <div class="solid-part">
+                <p>Race #3</p>
+                <p style="font-size: small;">Difficulty: ★★★</p>
+                <p style="font-size: small; margin-top: 1%;">Reward: $2,500</p>
+            </div>
+            <div class="checkered-part"></div>
+        </div>
+
+        <div class="race locked" onclick="Main.newRace(Races.race4)">
+            <div class="solid-part">
+                <p>Race #4</p>
+                <p style="font-size: small;">Difficulty: ★★★★</p>
+                <p style="font-size: small; margin-top: 1%;">Reward: $10,000</p>
+            </div>
+            <div class="checkered-part"></div>
+        </div>
+
+        <div class="race locked" onclick="Main.newRace(Races.race5)">
+            <div class="solid-part">
+                <p>Race #5</p>
+                <p style="font-size: small;">Difficulty: ★★★★★</p>
+                <p style="font-size: small; margin-top: 1%;">Reward: $1,000,000</p>
+            </div>
+            <div class="checkered-part"></div>
+        </div>
+    </div>
+
+    <!-- cars in garage -->
+    <div class="cars" id="carTab">
+        <div class='tabs'>
+            <div class="tab"><span>Cars</span></div>
+            <div class="tab partsTab"><span>Parts</span></div>
+        </div>
+    </div>
+
+    <!-- shop -->
+    <div class="shop">
+        <div class="featured">
+            <p><u>Featured</u></p>
+
+        </div>
+
+        <div class="ShopCars">
+            <p><u>Cars</u></p>
+            
+        </div> 
+
+        <div class="CarParts">
+            <p><u>Parts</u></p>
+
+        </div> 
+    </div>
+
+    <canvas></canvas>
+
+    <!-- gsap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="./saving.js"></script>
+
+    <script src="../Framework/canvas.js"></script>
+
+    <script src="../Framework/Classes/Hitbox.js"></script>
+    <script src="../Framework/Classes/Camera.js"></script>
+    <script src="../Framework/Classes/Effect.js"></script>
+    <script src="../Framework/Classes/Particle.js"></script>
+
+    <script src="./Race.js"></script>
+    <script src="./Car.js"></script>
+
+    <script src="./CarParts.js"></script>
+    <script src="./Cars.js"></script>
+    <script src="./Shop.js"></script>
+    <script src="./Lanes.js"></script>
+    <script src="./Races.js"></script>
+    <script src="./HUD.js"></script>
+    <script src="./Main.js"></script>
+
+    <script src="../Framework/utils.js"></script>
+    <script src="../Framework/Input.js"></script>
+    <script src="../Framework/setup.js"></script>
+</body>
+</html>

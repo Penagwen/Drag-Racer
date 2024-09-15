@@ -1,0 +1,594 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    user-select: none;
+    pointer-events: none;
+
+    max-width: 1366px;
+    max-height: 599px;
+}
+
+
+.races {
+    display: none;
+    position: absolute;
+    left: 500px;
+    top: 125px;
+
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    width: 750px;
+    height: 350px;
+    overflow: auto;
+}
+
+.races p {
+    margin: 0px;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.race {
+    margin: 10px;
+    width: calc(100% - 50px);
+    height: 50px;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: x-large;
+    font-weight: bold;
+    background-color: #EEE;
+    position: relative;
+}
+
+.race:hover {
+    outline: solid white;
+    cursor: pointer;
+
+}
+
+
+.race.locked {
+    pointer-events: none;
+}
+
+.race.locked::after {
+    content: "🔒";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bolder;
+
+    border: 3px solid black;
+}
+
+.solid-part {
+    background-color: #cda817;
+    width: 33.33%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.checkered-part {
+    background-image: linear-gradient(45deg, black 25%, transparent 25%), linear-gradient(-45deg, black 25%, transparent 25%), linear-gradient(45deg, transparent 75%, black 75%), linear-gradient(-45deg, transparent 75%, black 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+}
+
+.cars {
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    position: absolute;
+    left: 500px;
+    top: 125px;
+
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    width: 750px;
+    height: 350px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.cars .tabs {
+    position: absolute;
+    width: 97.5%;
+    height: 10%;
+    margin: 1.5%;
+    border-bottom: 1px solid #EEE;
+}
+
+.cars .tabs .tab {
+    display: inline-block;
+    text-align: center;
+    width: 10%;
+    line-height: 1.5;
+    height: 100%;
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: #EEE;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.car {
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    width: 20%;
+    height: 33%;
+    margin: 2.5%;
+
+    box-sizing: border-box;
+}
+
+.car:nth-child(-n + 5){
+    margin-top: 8%;
+}
+
+.car:hover {
+    cursor: pointer;
+}
+
+.cars button {
+    width: 10%;
+    height: 8%;
+    position: absolute;
+    margin: 1.5%;
+    top: 0px;
+    right: 0px;
+
+    background-color: #EEE;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.part {
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    width: 20%;
+    height: 33%;
+    margin: 2.5%;
+
+    box-sizing: border-box;
+}
+
+.part:nth-child(-n + 5){
+    margin-top: 8%;
+}
+
+.part:hover {
+    cursor: pointer;
+}
+
+.part .image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -20px
+}
+
+.part img {
+    width: 40%;
+    height: auto;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.part .name{
+    margin: 0px;
+    text-align: center;
+    color: #EEE;
+    border-bottom: solid 1px #EEE;
+    font-weight: bold;
+    padding: 2px;
+    font-size: 80%;
+}
+
+.part .stats{
+    position: relative;
+    margin: 0px;
+    text-align: center;
+    color: #EEE;
+    border-top: solid 1px #EEE;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 8px;
+    top: -35%;
+}
+
+.part.selected  {
+    border: 2px solid cyan;
+}
+
+.selected {
+    border: 2px solid cyan;
+}
+
+.car .name{
+    margin: 0px;
+    text-align: center;
+    color: #EEE;
+    border-bottom: solid 1px #EEE;
+    font-weight: bold;
+    padding: 2px;
+    font-size: 80%;
+}
+
+.car img {
+    position: absolute;
+    width: calc(1024px * 1.5);
+    height: calc(1024px * 1.5);
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.car .stats{
+    margin: 0px;
+    margin-top: 48%;
+    text-align: center;
+    color: #EEE;
+    border-top: solid 1px #EEE;
+    font-weight: bold;
+    padding-top: 5px;
+    font-size: 8px;
+}
+
+.shop {
+    display: flex;
+    flex-direction: row;
+
+
+    position: absolute;
+    left: 150px;
+    top: 150px;
+
+
+    border: 1px solid grey;
+    border-radius: 5px;
+
+
+    width: calc(100vw - 300px);
+    height: 350px;
+
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+}
+
+.shop p {
+    position: absolute;
+    color: #EEE;
+    font-size: xx-large;
+    margin: 20px;
+}
+
+.featured {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+    position: absolute;
+    margin-left: 0px;
+
+    width: fit-content;
+    height: 100%;
+
+    /* background-color: rgba(255, 0, 0, 0.5); */
+}
+
+.featured .item {
+    display: inline-block;
+
+    width: 250px;
+    height: 250px;
+
+    border: 2px solid #EEE;
+    border-radius: 15px;
+    margin: 20px;
+
+    margin-top: 75px;
+}
+
+.featured .item:hover {
+    outline: solid 3px #EEE;
+    cursor: pointer;
+}
+
+.featured .item img {
+    position: absolute;
+
+    width: 3072px;
+    height: 3072px;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.featured .item .cost {
+    text-align: center;
+    color: #EEE;
+
+    border-top: 2px solid #EEE;
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: 80%;
+    padding: 10px;
+}
+
+.ShopCars {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+    position: absolute;
+    margin-left: 0px;
+
+    width: fit-content;
+    height: 100%;
+
+    /* background-color: rgba(0, 0, 255, 0.5); */
+}
+
+.ShopCars .item {
+    display: inline-block;
+
+    width: 250px;
+    height: 250px;
+
+    border: 2px solid #EEE;
+    border-radius: 15px;
+    margin: 20px;
+
+    margin-top: 75px;
+}
+
+.ShopCars .item:hover {
+    outline: solid 3px #EEE;
+    cursor: pointer;
+}
+
+.ShopCars .item img {
+    position: absolute;
+
+    width: 3072px;
+    height: 3072px;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.ShopCars .item .cost {
+    text-align: center;
+    color: #EEE;
+
+    border-top: 2px solid #EEE;
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: 80%;
+    padding: 10px;
+}
+
+.CarParts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+    position: absolute;
+    margin-left: 0px;
+
+    width: fit-content;
+    height: 100%;
+
+    /* background-color: rgba(0, 255, 0, 0.5); */
+}
+
+.CarParts .item {
+    display: inline-block;
+
+    width: 250px;
+    height: 250px;
+
+    border: 2px solid #EEE;
+    border-radius: 15px;
+    margin: 20px;
+
+    margin-top: 75px;
+}
+
+.CarParts .item:hover {
+    outline: solid 3px #EEE;
+    cursor: pointer;
+}
+
+.CarParts .image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CarParts .item img {
+    width: 50%;
+    height: auto;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.CarParts .item .cost {
+    text-align: center;
+    color: #EEE;
+
+    border-top: 2px solid #EEE;
+    font-size: x-large;
+    font-weight: bold;
+    margin-top: -20%;
+    padding: 10px;
+}
+
+
+.item.invalid {
+    border: 2px solid red;
+
+    animation-name: invalid;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.item.invalid:hover {
+    outline: solid 4px red;
+}
+
+
+.item.sold {
+    position: relative; /* Ensure the pseudo-element is positioned correctly */
+    overflow: hidden;
+
+    /* transform: translate(5px, 5px);
+    width: 240px;
+    height: 240px; */
+}
+
+
+.item.sold::after {
+    content: "Sold"; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% * sqrt(2)); /* Make it long enough to cover the diagonal */
+    height: 50px; /* The thickness of the line */
+
+
+    /* background-color: red; Line color */
+    background-color: grey;
+    background-image: linear-gradient(45deg, white 25%, transparent 25%), linear-gradient(-45deg, white 25%, transparent 25%), linear-gradient(45deg, transparent 75%, white 75%), linear-gradient(-45deg, transparent 75%, white 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+
+
+    transform: rotate(45deg) translate(0, -25px); /* Rotate to create the diagonal effect */
+    transform-origin: top left; /* Ensure the rotation is from the top-left corner */
+    z-index: 10; /* Ensure it appears on top of other elements */
+    pointer-events: none; /* Make sure it doesn’t block clicks */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    color: black;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+.item:not(.sold):hover {
+    position: relative;
+}
+
+.item:not(.sold):hover::after {
+    content: attr(data-name) "\A" attr(data-stats); 
+    white-space: pre;
+    position: absolute;
+    top: -60px;
+    left: 0px;
+    width: 250px; /* Make it long enough to cover the diagonal */
+    height: 125px; /* The thickness of the line */
+
+    background-color: black;
+    border: 2px solid #EEE;
+    border-radius: 15px;
+
+    z-index: 10; /* Ensure it appears on top of other elements */
+    pointer-events: none; /* Make sure it doesn’t block clicks */
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5; */
+    color: #EEE;
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+.tutorial {
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    background-color: black;
+    border: 5px solid #EEE;
+    border-radius: 15px;
+    z-index: 99;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.tutorial p {
+    color: #EEE;
+    font-size: xx-large;
+}
+
+.textHighlight {
+    position: fixed;
+    display: none;
+    top: 60px;
+    left: 750px;
+    width: 80px;
+    height: 35px;
+    background: transparent;
+    outline: 4px dashed cyan;
+    border-radius: 10px;
+}
+
+@keyframes invalid {
+    0%   {transform: rotate(0%);}
+    20%  {transform: rotate(5deg);}
+    40%  {transform: rotate(0%);}
+    60% {transform: rotate(-5deg);}
+    100% {transform: rotate(0deg);}
+}
