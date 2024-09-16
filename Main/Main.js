@@ -35,7 +35,7 @@ class Main{
     }
 
     static Start(){
-        //this.ResetData();            
+        this.ResetData();            
 
         // update car memory addresses
         this.PLAYERS_GARAGE.forEach((car) => {
