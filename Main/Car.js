@@ -113,7 +113,7 @@ class Car{
         }
     
         // Handle space bar press
-        if (Input.getKeyDown(" ")) {
+        if (Input.getKeyDown(" ") || Input.getMouseDown()) {
             if (!this.spaceKeyDown && this.spaceBarReleased) {
                 // Pressed the space bar after releasing it
                 this.spaceKeyDown = true;
